@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import 'package:quiz/result.dart';
+import './quiz.dart';
+import './result.dart';
 void main()
 {
   runApp(MyApp());
@@ -13,6 +14,17 @@ class MyApp extends StatefulWidget {
 }
 class _MyAppState extends State
 {
+  var questions = [
+    {'questionText':'What\'s your favourite colour?',
+      'answer': ['Black','Red','White','Green']
+    },
+    {'questionText':'Whats\'s your favourite animal?',
+      'answer':['Dog','Cat','Rabbit','Lion']
+    },
+    {'questionText': 'What\'s your favourite book?',
+      'answer': ['Harry Potter','Narnia','The Godfather','The Last Don']
+    }
+  ];
    var questionindex = 0;
   void answerQuestion()
   {
@@ -23,28 +35,14 @@ class _MyAppState extends State
   }
   Widget build(BuildContext context)
   {
-
-    var questions = [
-      {'questionText':'What\'s your favourite colour?',
-       'answer': ['Black','Red','White','Green']
-      },
-    {'questionText':'Whats\'s your favourite animal?',
-      'answer':['Dog','Cat','Rabbit','Lion']
-    },
-      {'questionText': 'What\'s your favourite book?',
-        'answer': ['Harry Potter','Narnia','The Godfather','The Last Don']
-      }
-    ];
     return MaterialApp(home:Scaffold(
-      appBar: AppBar(title:Text('Quiz App') ,),
-      body: Column(
-        children: [ Question(questions[questionindex]['questionText']),
-          ...(questions[questionindex]['answer'] as List<String>).map((answer){
-           return Answer(answerQuestion,answer);
-         }).toList()
-        ]
-      ),
-    ));
+
+      appBar: AppBar(title:Text('Quiz App') ,backgroundColor: Colors.green,),
+      body: questionindex < questions.length ?
+      Quiz(answerQuestion: answerQuestion,questionIndex: questionindex,questions: questions,)
+      : Result(),
+    )
+    );
   }
 
 }
