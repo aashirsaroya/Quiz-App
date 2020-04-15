@@ -16,7 +16,7 @@ class _MyAppState extends State
 {
   var questions = [
     {'questionText':'What\'s your favourite colour?',
-      'answer': [{'text':'Black','score':10},{'text':'Red','score':4},{'text':'White','score':'2'},
+      'answer': [{'text':'Black','score':10},{'text':'Red','score':4},{'text':'White','score':1},
         {'text':'Green','score':6}]
     },
     {'questionText':'Whats\'s your favourite animal?',
@@ -52,7 +52,7 @@ class _MyAppState extends State
       appBar: AppBar(title:Text('Quiz App') ,backgroundColor: Colors.green,),
       body: questionindex < questions.length ?
       Quiz(answerQuestion: answerQuestion,questionIndex: questionindex,questions: questions,)
-      : Result(totalscore),
+      : Result(totalscore,restartQuiz),
     )
     );
   }

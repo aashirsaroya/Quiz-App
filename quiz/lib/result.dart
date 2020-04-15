@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 class Result extends StatelessWidget {
   final int resultscore;
-  Result(this.resultscore);
+  final Function resetHandler;
+  Result(this.resultscore,this.resetHandler);
   String get resultPhrase
   {
     var resultText = 'You did it!!';
-    if(resultscore <= 8)
+    if(resultscore <= 10)
       resultText = 'You are awesome and innocent:):):)';
     else if(resultscore <= 12)
       resultText = 'Preety Likeable :)';
@@ -26,7 +27,8 @@ class Result extends StatelessWidget {
             style:TextStyle(fontSize: 36,fontWeight: FontWeight.bold) ,
             textAlign: TextAlign.center,
           ),
-          FlatButton(child: Text('Restart Quiz!!'),onPressed: ,)
+          FlatButton(child: Text('Restart Quiz!!'),onPressed:resetHandler,
+          textColor: Colors.green,)
         ],
       ),
     );
