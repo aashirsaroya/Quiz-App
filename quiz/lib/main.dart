@@ -38,10 +38,10 @@ class _MyAppState extends State
     return MaterialApp(home:Scaffold(
       appBar: AppBar(title:Text('Quiz App') ,),
       body: Column(
-        children: [ Question(questions.elementAt(questionindex)),
-          Answer(answerQuestion),
-          Answer(answerQuestion),
-          Answer(answerQuestion),
+        children: [ Question(questions[questionindex]['questionText']),
+          ...(questions[questionindex]['answer'] as List<String>).map((answer){
+           return Answer(answerQuestion,answer);
+         }).toList()
         ]
       ),
     ));
